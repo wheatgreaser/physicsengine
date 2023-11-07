@@ -41,40 +41,8 @@ def posDisplay(duration, v, p) :
     time.sleep(1)
     
 v1 = [0, 0, 0]
-v2 = [0, 0, 0]
-def simul_gravity(duration):
-  
-  for i in range(duration):
-    F = gravitational_force(p1, p2)
-    a1 = -F[0]/p1.mass
-    a2 = F[0]/p2.mass
+v2 = [0, 0, 0]    
 
-    a3 = -F[1]/p1.mass
-    a4 = F[1]/p2.mass
-
-    a5 = -F[2]/p1.mass
-    a6 = F[2]/p2.mass
-  
-  
-    v1[0] += a1 * 1
-    v2[0] += a2 * 1
-
-    v1[1] += a3 * 1
-    v2[1] += a4 * 1
-
-    v1[2] += a5 * 1
-    v2[2] += a6 * 1
-   
-    posUpdate(v1, p1,  1)
-    posUpdate(v2, p2, 1)
-    print(
-  f'X1 : {p1.position[0]}, Y1 : {p1.position[1]}, Z1 : {p1.position[2]} ')
-    print(
-      f'X2 : {p2.position[0]}, Y2 : {p2.position[1]}, Z2 : {p2.position[2]} ')
-    print(f'distance: {distance(p1, p2)}')
-    print()
-    time.sleep(1)
-    
 def simul_force(force, p, duration):
   v = [0, 0, 0]
   for i in range(duration):    
@@ -82,16 +50,16 @@ def simul_force(force, p, duration):
         force[1]/p.mass, 
         force[2]/p.mass]
     
-    v[0] = v[0] + a[0] 
-    v[1] += a[1]
-    v[2] += a[2]
+    v[0] = v[0] + (a[0] * 0.1)
+    v[1] += a[1] * 0.1
+    v[2] += a[2] * 0.1
     print(f'X {p.position[0]}')
     print(f'Y {p.position[1]}')
     print(f'Z {p.position[2]}')
-    posUpdate(v, p, 1)
+    posUpdate(v, p, 0.1)
   
 F = [5, 0, 0]   
-simul_force(F, p2, 10)
+simul_force(F, p2, 100)
 
 
   
